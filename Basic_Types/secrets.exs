@@ -1,5 +1,11 @@
 #Exercise # 3: Secrets - Anonymous Functions and Bit Manipulation
 
+# In this exercise, you've been tasked with writing the software for an encryption device that works by performing transformations on data. You need a way to flexibly create complicated functions by combining simpler functions together.
+
+# For each task, return an anonymous function that can be invoked from the calling scope.
+
+# All functions should expect integer arguments. Integers are also suitable for performing bitwise operations in Elixir.
+
 defmodule Secrets do
   def secret_add(secret) do
     fn param -> param + secret end

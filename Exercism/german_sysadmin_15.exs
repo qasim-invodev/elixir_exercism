@@ -5,12 +5,12 @@ defmodule Username do
   def sanitize([]), do: []
   def sanitize([head | tail]) do
     case head do
-      head when head >= 97 and head <= 122 -> [head] ++ sanitize(tail)
-      head when head == 95 -> [head] ++ sanitize(tail)
-      head when head == 228 -> [97,101] ++ sanitize(tail)
-      head when head == 246 -> [111,101] ++ sanitize(tail)
-      head when head == 252 -> [117,101] ++ sanitize(tail)
-      head when head == 223 -> [115,115] ++ sanitize(tail)
+      head when head >= ?a and head <= ?z -> [head | sanitize(tail)]
+      head when head == ?_ -> [head | sanitize(tail)]
+      head when head == ?ä -> [?a,?e | sanitize(tail)]
+      head when head == ?ö -> [?o,?e | sanitize(tail)]
+      head when head == ?ü -> [?u,?e | sanitize(tail)]
+      head when head == ?ß -> [?s,?s | sanitize(tail)]
       _ -> sanitize(tail)
     end
   end

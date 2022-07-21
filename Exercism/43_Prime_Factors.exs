@@ -10,20 +10,15 @@ defmodule PrimeFactors do
   @spec factors_for(pos_integer) :: [pos_integer]
   def factors_for(1), do: []
   def factors_for(number) do
-    fac = 2
-    factors = []
-    do_factors(number, fac, factors)
+    do_factors(number, 2, [])
   end
-  defp do_factors(1, _, factors), do: factors |> Enum.reverse()
+
+  defp do_factors(number, fac, factors) when fac * fac > number , do: Enum.reverse([number | factors])
   defp do_factors(number, fac, factors) do
-    if rem(number,fac) != 0 do
-      do_factors(number, fac + 1, factors)
+    if rem(number,fac) == 0 do
+      do_factors(div(number,fac), fac, [fac | factors])
     else
-      new_factors = fac ++ factors
-      new_num = div(number,fac)
-      do_factors(new_num, fac, new_factors)
+      do_factors(number, fac + 1, factors)
     end
   end
 end
-
-fac = factors_for(45) |> IO.inspect()
